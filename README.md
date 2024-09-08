@@ -1,6 +1,11 @@
 # airflow-spark : if you want to use airflow with spark
 ## ready to use, enjoy ;-)
 
+### Versions
+Airflow : `2.10.1`
+
+Spark : `bitnami/spark:latest`
+
 ### Initalize
 Get source files
 
