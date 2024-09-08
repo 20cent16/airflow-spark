@@ -304,6 +304,14 @@ services:
     environment:
       - "SPARK_MASTER=spark://spark-master:7077"
 
+  jupyter-spark:
+    image: jupyter/pyspark-notebook:latest
+    #container_name: jupyter-notebook
+    ports:
+     - "8888:8888"
+     - "4040-4080:4040-4080"
+    volumes:
+     - ./notebooks:/home/jovyan/work/notebooks/
 
 volumes:
   postgres-db-volume:

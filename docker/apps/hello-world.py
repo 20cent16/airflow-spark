@@ -11,7 +11,7 @@ from pyspark.sql import SparkSession
 #spark = SparkSession.builder.config(conf=conf).getOrCreate()
 
 # Create spark context
-sc = SparkContext()
+#sc = SparkContext()
 
 # Print result
 print("---------------------------")
