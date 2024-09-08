@@ -1,6 +1,8 @@
 # airflow-spark
 
 ### Initalize
+Navigate to docker directory and execute
+
 `mkdir -p ./dags ./logs ./plugins ./config`
 
 `echo -e "AIRFLOW_UID=$(id -u)" > .env`
