@@ -1,6 +1,11 @@
 # airflow-spark : if you want to use airflow with spark
 ## ready to use, enjoy ;-)
 
+### Versions
+Airflow : `2.10.1`
+
+Spark : `bitnami/spark:latest`
+
 ### Initalize
 Get source files
 
@@ -16,6 +21,15 @@ Navigate to docker directory and execute
 Navigate to docker directory and execute
 
 `docker compose up`
+
+### Configure Airflow
+UI : http://localhost:8080/connection/list/
+
+Add a spark connection with following configuration:
+
+**host** : spark://spark-master
+
+**port** : 7077
 
 ### Useful and Optional : Clean existing docker files
 
