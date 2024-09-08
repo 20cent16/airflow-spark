@@ -17,6 +17,15 @@ Navigate to docker directory and execute
 
 `docker compose up`
 
+### Configure Airflow
+UI : http://localhost:8080/connection/list/
+
+Add a spark connection with following configuration:
+
+**host** : spark://spark-master
+
+**port** : 7077
+
 ### Useful and Optional : Clean existing docker files
 
 #### Stop all running containers
