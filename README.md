@@ -1,4 +1,5 @@
 # airflow-spark
+## ready to use, enjoy ;-)
 
 ### Initalize
 Navigate to docker directory and execute
