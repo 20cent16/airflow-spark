@@ -1,11 +1,11 @@
 # airflow-spark
 
 
-# clean existing docker files
+## clean existing docker files
 
-## Stop all running containers
+### Stop all running containers
 sudo docker stop $(sudo docker ps -aq)
-## Remove all containers
+### Remove all containers
 sudo docker rm $(sudo docker ps -aq)
-## Remove all images
+### Remove all images
 sudo docker rmi $(sudo docker images -q)
