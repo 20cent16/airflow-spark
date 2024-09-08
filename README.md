@@ -2,6 +2,10 @@
 ## ready to use, enjoy ;-)
 
 ### Initalize
+Get source files
+
+`git clone https://github.com/20cent16/airflow-spark.git`
+
 Navigate to docker directory and execute
 
 `mkdir -p ./dags ./logs ./plugins ./config`
@@ -11,9 +15,9 @@ Navigate to docker directory and execute
 ### Start containers
 Navigate to docker directory and execute
 
-`sudo docker compose up`
+`docker compose up`
 
-### Useful : Clean existing docker files
+### Useful and Optional : Clean existing docker files
 
 #### Stop all running containers
 `sudo docker stop $(sudo docker ps -aq)`
