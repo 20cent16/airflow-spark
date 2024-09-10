@@ -21,6 +21,8 @@ Navigate to docker directory and execute
 
 `echo -e "AIRFLOW_UID=$(id -u)" > .env`
 
+We manually set AIRFLOW_UID to avoid warning during Airflow starting
+
 ### Start containers
 Navigate to docker directory and execute
 
