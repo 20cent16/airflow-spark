@@ -13,7 +13,11 @@ Get source files
 
 Navigate to docker directory and execute
 
-`mkdir -p ./dags ./logs ./plugins ./config`
+`mkdir -p ./apps ./dags ./logs ./plugins ./config`
+
+**apps** = directory containing your programs
+
+**dags** = directory containing your dags calling your programs
 
 `echo -e "AIRFLOW_UID=$(id -u)" > .env`
 
