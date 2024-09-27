@@ -1,6 +1,7 @@
 import sys
 import requests
 import json
+import psutil
 from pyspark import SparkConf, SparkContext
 from pyspark.sql import SparkSession, DataFrame, Row
 
@@ -26,19 +27,31 @@ print("---------------------------")
 
 headers = {"Content-Type": "application/json"}
 url = "https://world.openfoodfacts.org/api/v2/search"
-response = requests.get(url, headers=headers)
 
-print("---------------------------")
-print("Request ok")
-print("---------------------------")
+#Initialize empty list
+List=[]
 
-#Retrieve response in json (dict)
-response_json=response.json()
-#We only want products and we convert to string because spark.read.json only accept RDD of strings
-products_string=json.dumps(response_json["products"])
+#Loop to browse result page per page
+for i in range(1,15):
+    print("Traitement de la page: ",i)
+    params = {"page" : i, "page_size" : 100}
+    response = requests.get(url, headers=headers, params=params)
+
+    #Retrieve response in json (dict)
+    response_json=response.json()
+    #We only want products and we convert to string because spark.read.json only accept RDD of strings
+    products_string=json.dumps(response_json["products"])
+
+    #Add to the List
+    List+=[products_string]
+
 #Creation of RDD
-responseRDD = sc.parallelize([products_string])
+RDD=sc.parallelize(List)
+
 #Dataframe creation
-df = spark.read.json(responseRDD)
+df = spark.read.json(RDD).repartition(10)
+df_view=df.createOrReplaceTempView("v_products")
+spark.sql("select count(*) from v_products").show()
+
 #df_view=df.createOrReplaceTempView("view")
-df.select("_id").show()
+#df.select("_id").show()
