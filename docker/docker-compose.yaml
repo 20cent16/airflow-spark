@@ -102,6 +102,28 @@ services:
       start_period: 5s
     restart: always
 
+  db:
+    image: postgres
+    ports: 
+      - 5439:5432
+    restart: always
+    # set shared memory limit when using docker-compose
+    shm_size: 128mb
+    # or set shared memory limit when deploy via swarm stack
+    #volumes:
+    #  - type: tmpfs
+    #    target: /dev/shm
+    #    tmpfs:
+    #      size: 134217728 # 128*2^20 bytes = 128Mb
+    environment:
+      POSTGRES_PASSWORD: example
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8085:8080
+
   redis:
     # Redis is limited to 7.2-bookworm due to licencing change
     # https://redis.io/blog/redis-adopts-dual-source-available-licensing/
@@ -316,8 +338,11 @@ services:
       SPARK_WORKER_CORES: 1
 
   jupyter-spark:
-    image: jupyter/pyspark-notebook:latest
+    #image: jupyter/pyspark-notebook:latest
     #container_name: jupyter-notebook
+    build:
+      context: .
+      dockerfile: Dockerfile_jupyter
     ports:
      - "8888:8888"
      - "4040-4080:4040-4080"
