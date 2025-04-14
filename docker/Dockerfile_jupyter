@@ -1,0 +1,15 @@
+FROM jupyter/pyspark-notebook:latest
+
+USER root
+
+# Installer wget si pas présent
+RUN apt-get update && apt-get install -y wget
+
+# Créer le dossier pour les .jar (s'il n'existe pas)
+RUN mkdir -p /opt/jars
+
+# Télécharger le driver PostgreSQL
+RUN wget https://jdbc.postgresql.org/download/postgresql-42.7.3.jar -P /opt/jars/
+
+USER jovyan
+
