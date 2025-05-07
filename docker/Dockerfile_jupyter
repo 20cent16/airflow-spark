@@ -11,5 +11,7 @@ RUN mkdir -p /opt/jars
 # Télécharger le driver PostgreSQL
 RUN wget https://jdbc.postgresql.org/download/postgresql-42.7.3.jar -P /opt/jars/
 
+RUN pip install python-dotenv
+
 USER jovyan
 

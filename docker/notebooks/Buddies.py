@@ -32,9 +32,13 @@ load_dotenv()
 api_url = os.getenv("API_URL")
 api_username = os.getenv("API_USERNAME")
 api_password = os.getenv("API_PASSWORD")
-db_url = os.getenv("DB_URL")
+db_host= os.getenv("DB_HOST")
+db_port = os.getenv("DB_PORT")
+db_dbname = os.getenv("DB_NAME")
+db_ssl = os.getenv("SSL_MODE")
 db_username = os.getenv("DB_USERNAME")
 db_password = os.getenv("DB_PASSWORD")
+
 
 # Print result
 print("---------------------------")
@@ -327,10 +331,10 @@ GROUP BY nb_joueurs,nb_joueurs_opposant,combo, opposant;
 
 
 # Paramètres de connexion
-jdbc_url = "jdbc:postgresql://db_url/buddies?ssl=require"
+jdbc_url = f"jdbc:postgresql://{db_host}:{db_port}/{db_dbname}?ssl={db_ssl}"
 properties = {
-    "user": "db_user",
-    "password": "db_password",
+    "user": db_username,
+    "password": db_password,
     "driver": "org.postgresql.Driver"
 }
 
